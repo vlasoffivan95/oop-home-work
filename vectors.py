@@ -52,3 +52,65 @@ class VectorCount(object):
             return True
         else:
             return False
+
+class Testing(unittest.TestCase):
+    def test_add(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c = a + b
+        z = VectorCount(7.0, 7.0, 5.0)
+        self.assertEqual(c, z)
+
+    def test_mul(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c = a * b
+        z = VectorCount(26)
+        self.assertEqual(c, z)
+
+    def test_sub(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c = a - b
+        d = VectorCount(-3, -1, 3)
+
+    def test_numeral_mul(self):
+        a = VectorCount(2, 3, 4)
+        b = 2.5
+        c = a * b
+        z = VectorCount(5, 7.5, 10)
+        self.assertEqual(c, z)
+
+    def test_float(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c = float(a)
+        d = float(b)
+        c1 = 5.39
+        c2 = 6.48
+        self.assertEqual(c, c1)
+        self.assertEqual(d, c2)
+
+    def test_vect_mul(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c = VectorCount.vect_mul(a, b)
+        c1 = VectorCount(-13, 18, -7)
+        self.assertEqual(c, c1)
+
+    def test_angle(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c5 = VectorCount.angle_vectors(a, b)
+        c6 = 41.84
+        self.assertEqual(c5, c6)
+
+    def test_col(self):
+        a = VectorCount(2, 3, 4)
+        b = VectorCount(5, 4, 1)
+        c = VectorCount.collin(a, b)
+        c1 = False
+        self.assertEqual(c, c1)
+
+if __name__ == '__main__':
+    unittest.main()
