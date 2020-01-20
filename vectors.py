@@ -21,3 +21,34 @@ class VectorCount(object):
 
     def __add__(self, other):
         return VectorCount(self.x+other.x, self.y+other.y, self.z + other.z)
+
+    def __sub__(self, other):
+        return VectorCount(self.x - other.x, self.y - other.y, self.z - other.z)
+
+    # векторное произведение
+    def vect_mul(self, other):
+        return VectorCount((self.y * other.z - self.z * other.y), (self.z * other.x - self.x * other.z),
+                           (self.x * other.y - self.y * other.x))
+
+    def __float__(self):
+        return round((sqrt(self.x ** 2 + self.y ** 2 + self.z ** 2)), 2)
+
+    # функция для расчета угла между векторами
+    def angle_vectors(self, other):
+        angle = (degrees(acos((self.x * other.x + self.y * other.y + self.z * other.z) / (
+                    (sqrt(self.x ** 2 + self.y ** 2 + self.z ** 2)) *
+                    (sqrt(other.x ** 2 + other.y ** 2 + other.z ** 2))))))
+        return round((angle), 2)
+
+    def __repr__(self):
+        return '%0.1f, %0.1f, %0.1f' % (self.x, self.y, self.z)
+
+    def __str__(self):
+        return self.__repr__()
+
+    # функция для определения коллинеарности векторов
+    def collin(self, other):
+        if self.x / other.x == self.y / other.y == self.z / other.z:
+            return True
+        else:
+            return False
